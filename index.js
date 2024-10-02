@@ -14,6 +14,16 @@ module.exports = () => {
           node => node.prop === 'initial-value'
         ) || {}
 
+        const parent = atRule.parent
+        const existingFallback = parent.nodes.find(
+          node => node.prop === prop
+        )
+
+        if (existingFallback) {
+          return
+        }
+
+
         if (value) {
           atRule.after(new Declaration({ prop, value }))
         } else {
