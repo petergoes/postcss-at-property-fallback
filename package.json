@@ -14,7 +14,10 @@
   },
   "author": "Peter Goes <petergoes@gmail.com>",
   "license": "MIT",
-  "repository": "petergoes/postcss-at-property-fallback",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/petergoes/postcss-at-property-fallback.git"
+  },
   "engines": {
     "node": ">=18.0.0"
   },
