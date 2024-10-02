@@ -1,30 +1,26 @@
+const { Declaration } = require('postcss')
+
 /**
  * @type {import('postcss').PluginCreator}
  */
-module.exports = (opts = {}) => {
-  // Work with options here
-
+module.exports = () => {
   return {
     postcssPlugin: 'postcss-at-property-fallback',
-    /*
-    Root (root, postcss) {
-      // Transform CSS AST here
-    }
-    */
 
-    /*
-    Declaration (decl, postcss) {
-      // The faster way to find Declaration node
-    }
-    */
+    AtRule: {
+      property: (atRule, {result}) => {
+        const prop = atRule.params
+        const { value } = atRule.nodes.find(
+          node => node.prop === 'initial-value'
+        ) || {}
 
-    /*
-    Declaration: {
-      color: (decl, postcss) {
-        // The fastest way find Declaration node if you know property name
+        if (value) {
+          atRule.after(new Declaration({ prop, value }))
+        } else {
+          result.warn(`No intial value for @property ${prop}`)
+        }
       }
     }
-    */
   }
 }
 
