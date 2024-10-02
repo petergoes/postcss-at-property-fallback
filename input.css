@@ -1,0 +1,25 @@
+:root {
+	@property --background-color {
+		syntax: '<color>';
+  		initial-value: magenta;
+  		inherits: true;
+	}
+}
+
+.some {
+
+	background-color: var(--background-color);
+
+	.nested {
+		
+		@property --color {
+			syntax: '<color>';
+			initial-value: hotpink;
+			inherits: true;
+		}
+
+		.class {
+			color: var(--color);
+		}
+	}
+}
