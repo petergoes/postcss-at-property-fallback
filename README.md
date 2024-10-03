@@ -1,22 +1,24 @@
-# PostCSS @property fallback
+# postcss-at-property-fallback
 
-[PostCSS] plugin providing `@property`'s `initial-value` fallback.
+> [PostCSS] plugin providing `@property`'s `initial-value` fallback.
 
-[PostCSS]: https://github.com/postcss/postcss
+Browsers that do not support the `@property` syntax (yet), will not register the
+default value. This plugin defines the custom property directly after the
+`@property` definition with the initial value as its value.
 
 ```css
+/* Input */
 @property --bg-color {
   syntax: '<color>';
   initial-value: magenta;
-  inherits: true;
 }
 ```
 
 ```css
+/* Output */
 @property --bg-color {
   syntax: '<color>';
   initial-value: magenta;
-  inherits: true;
 }
 --bg-property: magenta;
 ```
@@ -47,4 +49,5 @@ module.exports = {
 }
 ```
 
+[PostCSS]: https://github.com/postcss/postcss
 [official docs]: https://github.com/postcss/postcss#usage
